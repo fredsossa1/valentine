@@ -6,6 +6,39 @@ const successMessage = document.getElementById("successMessage");
 const heartsContainer = document.getElementById("hearts");
 const celebration = document.getElementById("celebration");
 
+// ========== EMAIL NOTIFICATION CONFIG ==========
+// Replace these with your EmailJS credentials from https://emailjs.com
+const EMAILJS_PUBLIC_KEY = "gxXnSYzX4n0L1ypiB"; // Get from EmailJS Dashboard
+const EMAILJS_SERVICE_ID = "service_zt67gct"; // e.g., "service_abc123"
+const EMAILJS_TEMPLATE_ID = "template_mp6jqfi"; // e.g., "template_xyz789"
+
+// Initialize EmailJS
+emailjs.init(EMAILJS_PUBLIC_KEY);
+
+// Track "No" button attempts (only notify once)
+let noAttemptNotified = false;
+let yesClickNotified = false;
+
+// Send notification email
+function sendNotification(subject, message) {
+  const now = new Date();
+  const time = now.toLocaleString("fr-CA", {
+    dateStyle: "long",
+    timeStyle: "short",
+  });
+
+  emailjs
+    .send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+      subject: subject,
+      message: message,
+      time: time,
+    })
+    .then(
+      () => console.log("Notification sent!"),
+      (error) => console.log("Failed to send:", error),
+    );
+}
+
 // Create floating hearts background
 function createFloatingHearts() {
   const hearts = ["💕", "💗", "💖", "💝", "❤️", "💘", "💓"];
@@ -42,6 +75,15 @@ function runAway(e) {
 
   // Only run if pointer is close enough
   if (distance < 150) {
+    // Send notification on first "No" attempt
+    if (!noAttemptNotified) {
+      noAttemptNotified = true;
+      sendNotification(
+        "💔 Elle a essayé de cliquer Non !",
+        "Elle a essayé de cliquer sur le bouton Non... mais il s'est enfui ! 😜",
+      );
+    }
+
     // Calculate new position (run away from pointer)
     const angle = Math.atan2(deltaY, deltaX);
     const runDistance = 150 + Math.random() * 100;
@@ -110,6 +152,15 @@ document.addEventListener("mousemove", (e) => {
 
 // Yes button click - show celebration!
 yesBtn.addEventListener("click", () => {
+  // Send notification for Yes click
+  if (!yesClickNotified) {
+    yesClickNotified = true;
+    sendNotification(
+      "💖 ELLE A DIT OUI !!!",
+      "Elle a cliqué sur Oui ! 🎉💕 Prépare-toi pour le 14 février !",
+    );
+  }
+
   card.classList.add("hidden");
   successMessage.classList.add("show");
   createConfetti();
