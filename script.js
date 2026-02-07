@@ -10,7 +10,7 @@ const celebration = document.getElementById("celebration");
 // Replace these with your EmailJS credentials from https://emailjs.com
 const EMAILJS_PUBLIC_KEY = "gxXnSYzX4n0L1ypiB"; // Get from EmailJS Dashboard
 const EMAILJS_SERVICE_ID = "service_zt67gct"; // e.g., "service_abc123"
-const EMAILJS_TEMPLATE_ID = "template_mp6jqfi"; // e.g., "template_xyz789"
+const EMAILJS_TEMPLATE_ID = "template_ai25bcf"; // e.g., "template_xyz789"
 
 // Initialize EmailJS
 emailjs.init(EMAILJS_PUBLIC_KEY);
