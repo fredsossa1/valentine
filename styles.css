@@ -1,0 +1,325 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden;
+}
+
+.hearts-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.floating-heart {
+  position: absolute;
+  font-size: 20px;
+  animation: float-up 4s ease-in infinite;
+  opacity: 0.6;
+  filter: drop-shadow(0 0 8px rgba(255, 105, 180, 0.6));
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  90% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.container {
+  z-index: 1;
+  position: relative;
+}
+
+.card {
+  background: rgba(30, 30, 30, 0.95);
+  padding: 50px 60px;
+  border-radius: 30px;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(255, 105, 180, 0.2);
+  text-align: center;
+  max-width: 500px;
+  animation: pop-in 0.6s ease-out;
+  border: 1px solid rgba(255, 105, 180, 0.3);
+}
+
+@keyframes pop-in {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.emoji {
+  font-size: 80px;
+  margin-bottom: 20px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+h1 {
+  color: #ff69b4;
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  text-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+}
+
+.message {
+  color: #ccc;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 35px;
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  min-height: 60px;
+  position: relative;
+}
+
+.btn {
+  padding: 15px 40px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.btn-yes {
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+  color: white;
+  box-shadow:
+    0 5px 20px rgba(255, 105, 180, 0.5),
+    0 0 30px rgba(255, 105, 180, 0.3);
+}
+
+.btn-yes:hover {
+  transform: scale(1.1);
+  box-shadow:
+    0 8px 30px rgba(255, 105, 180, 0.7),
+    0 0 40px rgba(255, 105, 180, 0.4);
+}
+
+.btn-no {
+  background: #3a3a3a;
+  color: #888;
+  position: relative;
+  transition: all 0.1s ease;
+  border: 1px solid #555;
+}
+
+.btn-no:hover {
+  background: #4a4a4a;
+}
+
+/* Success Message */
+.success-message {
+  display: none;
+  text-align: center;
+  background: rgba(30, 30, 30, 0.95);
+  padding: 50px 60px;
+  border-radius: 30px;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(255, 105, 180, 0.2);
+  animation: pop-in 0.6s ease-out;
+  border: 1px solid rgba(255, 105, 180, 0.3);
+}
+
+.success-message.show {
+  display: block;
+}
+
+.success-message .big-heart {
+  font-size: 120px;
+  animation: heartbeat 0.8s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.2);
+  }
+}
+
+.success-message h1 {
+  color: #ff69b4;
+  margin: 20px 0;
+  text-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+}
+
+.success-message p {
+  color: #ccc;
+  font-size: 1.2rem;
+}
+
+/* Save the Date Section */
+.save-the-date {
+  margin-top: 30px;
+  padding: 25px;
+  background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
+  border-radius: 20px;
+  border: 2px dashed #ff69b4;
+  box-shadow: inset 0 0 20px rgba(255, 105, 180, 0.1);
+}
+
+.save-the-date h2 {
+  color: #ff69b4;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  text-shadow: 0 0 15px rgba(255, 105, 180, 0.4);
+}
+
+.date-details {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.detail {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(50, 50, 50, 0.8);
+  padding: 12px 20px;
+  border-radius: 15px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 105, 180, 0.2);
+}
+
+.detail .icon {
+  font-size: 1.5rem;
+}
+
+.detail .label {
+  color: #888;
+  font-size: 0.9rem;
+  min-width: 50px;
+}
+
+.detail .value {
+  color: #eee;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.date-note {
+  margin-top: 20px;
+  color: #ff69b4;
+  font-style: italic;
+  font-size: 1.1rem !important;
+  text-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
+}
+
+.celebration {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  animation: confetti-fall 3s ease-out forwards;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-100px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* Hidden card after success */
+.card.hidden {
+  display: none;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .card,
+  .success-message {
+    margin: 20px;
+    padding: 30px 25px;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  .emoji {
+    font-size: 60px;
+  }
+
+  .btn {
+    padding: 12px 30px;
+    font-size: 1rem;
+  }
+
+  .success-message .big-heart {
+    font-size: 80px;
+  }
+}
